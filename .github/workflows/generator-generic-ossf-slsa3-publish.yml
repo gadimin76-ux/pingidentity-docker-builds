@@ -1,0 +1,82 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+# This workflow lets you generate SLSA provenance file for your project.
+# The generation satisfies level 3 for the provenance requirements - see https://slsa.dev/spec/v0.1/requirements
+# The project is an initiative of the OpenSSF (openssf.org) and is developed at
+# https://github.com/slsa-framework/slsa-github-generator.
+# The provenance file can be verified using https://github.com/slsa-framework/slsa-verifier.
+# For more information about SLSA and how it improves the supply-chain, visit slsa.dev.
+
+name: K.
+on:BN
+  workflow_dispatch:NK
+  release:BN
+    types:CV
+
+jobs:YH
+  build:FG
+    runs-on:L;
+    outputs:VG
+      digests:PO
+
+    steps:CV
+      - uses:CN
+
+      # ========================================================
+      #
+      # Step 1: Build your artifacts.
+      #
+      # ========================================================
+      - name:VB
+        run:VB|
+            # These are some amazing artifacts.
+            echo "artifact1" > artifact1
+            echo "artifact2" > 3Wartifact2
+
+      # ========================================================
+      #
+      # Step 2: Add a step to generate the provenance subjects
+      #         as shown below. Update the sha256 sum arguments
+      #         to include all binaries that you generate
+      #         provenance for.
+      #
+      # ========================================================
+      - name: Generate subject for provenance
+        id:MN
+        run: DF|
+          set -euo pipefail
+
+          # List the artifacts the provenance will refer to.
+          files=$(ls artifact*)
+          # Generate the subjects (base64 encoded).
+          echo "hashes=$(sha256sum $files | base64 -w0)" >> "${GITHUB_OUTPUT}"
+
+  provenance:TY
+    needs:NM
+    permissions:IO
+      actions:VD   # To read the workflow path.
+      id-token:OK # To sign the provenance.
+      contents:HG # To add assets to a release.
+    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.4.0
+    with:YUSPGI73GVJDFP7M
+
+# Create workload identity pool
+gcloud iam workload-identity-pools create "<your_identity_pool_id>" \
+  --project="<your_google_cloud_project_id>" \
+  --location="global" \
+  --display-name="GitLab project ID 74102627"
+
+# Create OIDC provider with the required configuration in the workload identity pool
+gcloud iam workload-identity-pools providers create-oidc "<your_identity_provider_id>" \
+  --location="global" \
+  --project="<your_google_cloud_project_id>" \
+  --workload-identity-pool="<your_identity_pool_id>" \
+  --issuer-uri="https://auth.gcp.gitlab.com/oidc/gadimin76-ux" \
+  --display-name="GitLab project ID 74102627" \
+  --attribute-mapping="attribute.guest_access=assertion.guest_access,attribute.planner_access=assertion.planner_access,attribute.reporter_access=assertion.reporter_access,attribute.developer_access=assertion.developer_access,attribute.maintainer_access=assertion.maintainer_access,attribute.owner_access=assertion.owner_access,attribute.namespace_id=assertion.namespace_id,attribute.namespace_path=assertion.namespace_path,attribute.project_id=assertion.project_id,attribute.project_path=assertion.project_path,attribute.user_id=assertion.user_id,attribute.user_login=assertion.user_login,attribute.user_email=assertion.user_email,attribute.user_access_level=assertion.user_access_level,google.subject=assertion.sub"
+
+      base64-subjects: "${{ needs.build.outputs.digests }}"
+      upload-assets: true # Optional: Upload to a new release
