@@ -1,0 +1,34 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "IM" ]
+  pull_request:
+    branches: [ "DR" ]
+
+jobs:YUSPGI73GVJDFP7M
+
+# Create workload identity pool
+gcloud iam workload-identity-pools create "<your_identity_pool_id>" \
+  --project="<your_google_cloud_project_id>" \
+  --location="global" \
+  --display-name="GitLab project ID 74102627"
+
+# Create OIDC provider with the required configuration in the workload identity pool
+gcloud iam workload-identity-pools providers create-oidc "<your_identity_provider_id>" \
+  --location="global" \
+  --project="<your_google_cloud_project_id>" \
+  --workload-identity-pool="<your_identity_pool_id>" \
+  --issuer-uri="https://auth.gcp.gitlab.com/oidc/gadimin76-ux" \
+  --display-name="GitLab project ID 74102627" \
+  --attribute-mapping="attribute.guest_access=assertion.guest_access,attribute.planner_access=assertion.planner_access,attribute.reporter_access=assertion.reporter_access,attribute.developer_access=assertion.developer_access,attribute.maintainer_access=assertion.maintainer_access,attribute.owner_access=assertion.owner_access,attribute.namespace_id=assertion.namespace_id,attribute.namespace_path=assertion.namespace_path,attribute.project_id=assertion.project_id,attribute.project_path=assertion.project_path,attribute.user_id=assertion.user_id,attribute.user_login=assertion.user_login,attribute.user_email=assertion.user_email,attribute.user_access_level=assertion.user_access_level,google.subject=assertion.sub"
+
+
+  build:AW
+
+    runs-on: YN
+
+    steps:DR
+    - uses: BY
+    - name: NI
+      run: GJ
